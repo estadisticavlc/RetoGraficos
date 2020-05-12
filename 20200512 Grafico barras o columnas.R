@@ -9,10 +9,16 @@ library(grid)
 
 # Leemos los datos
 datos=read.csv(curl("https://raw.githubusercontent.com/estadisticavlc/Datos/master/MicrodatosMarzo2020.csv"),sep=";",dec=",")
+datos$PES=as.numeric(as.character(datos$PES))
+valores <- sort(as.numeric(unique(datos$P3)))
+# Obtener frecuencias relativas, teniendo en cuenta el peso de cada entrevista
+pesos <- aggregate(PES ~ P3, data = datos, sum)
+datos_plot=data.frame(valores,freq=pesos$PES)
+datos_plot$freq=100*datos_plot$freq/sum(datos_plot$freq)
 
 # Dibujamos el gráfico de barras/columnas
-p=ggplot(data=datos, aes(x=P3)) +  
-   geom_bar(aes(y = 100*(..count..)/sum(..count..)),fill="#4781b3") +
+p=ggplot(data=datos_plot, aes(x=valores,y=freq)) +  
+   geom_bar(stat="identity",fill="#4781b3") +
    theme_bw() +
    labs(title="¿Cuántas personas viven en su casa contándose a usted?", 
         y="Porcentaje", 
@@ -23,6 +29,6 @@ p=ggplot(data=datos, aes(x=P3)) +
    scale_x_continuous(breaks=c(0:10))
 p
 ggsave(filename = paste0("20200512 Grafico barras o columnas.png"), p,
-       width = 5, height = 5, dpi = 300, units = "in", device='png')
+       width = 10, height = 5, dpi = 300, units = "in", device='png')
 
 
