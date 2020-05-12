@@ -29,6 +29,7 @@ p=ggplot(data=datos_plot, aes(x=valores,y=freq)) +
    scale_x_continuous(breaks=c(0:10))
 p
 ggsave(filename = paste0("20200512 Grafico barras o columnas.png"), p,
-       width = 10, height = 5, dpi = 300, units = "in", device='png')
+       width = 9, height = 5, dpi = 300, units = "in", device='png')
+
 
 
