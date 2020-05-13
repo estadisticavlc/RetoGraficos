@@ -17,9 +17,9 @@ datos_plot<-data.frame(fechas, valores)
 p=ggplot(data=datos_plot, aes(fechas,valores)) +  
    geom_line(size=3, colour="#4781b3") +
    theme_bw() +
-   labs(title="Evolución del paro registrado", 
-        y=NULL, 
-        x="Personas", 
+   labs(title="Evolución del paro registrado en la ciudad de València (desde enero de 2006)", 
+        y="Número de personas", 
+        x=NULL, 
         caption="Fuente: Servicio Valenciano de Ocupación y Formación (LABORA). Elaboración: Oficina d'Estadística. Ajuntament de València.")+
    theme(plot.title = element_text(size=10,hjust = 0.5,face="bold"),
          plot.caption = element_text(color = "black",face = "italic", size = 6, hjust=0))+
