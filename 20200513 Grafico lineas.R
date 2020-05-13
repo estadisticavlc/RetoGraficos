@@ -23,7 +23,7 @@ p=ggplot(data=datos_plot, aes(fechas,valores)) +
         caption="Fuente: Servicio Valenciano de Ocupación y Formación (LABORA). Elaboración: Oficina d'Estadística. Ajuntament de València.")+
    theme(plot.title = element_text(size=10,hjust = 0.5,face="bold"),
          plot.caption = element_text(color = "black",face = "italic", size = 6, hjust=0))+
-   scale_x_date(breaks = as.Date(paste0(2006:2020,"-01-01")),date_labels =  "%Y")
+   scale_x_date(breaks = as.Date(paste0(2006:2020,"-01-01")),date_labels = "%Y")
 p
 ggsave(filename = paste0("20200513 Grafico lineas.png"), p,
        width = 9, height = 5, dpi = 300, units = "in", device='png')
