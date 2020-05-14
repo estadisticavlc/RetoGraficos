@@ -31,10 +31,17 @@ porc_P6_DT=datos %>%
    summarise(weighted.mean(P6_rec, PES, na.rm=T))
 
 datos_plot<-data.frame(porc_P6_DT=100*porc_P6_DT$`weighted.mean(P6_rec, PES, na.rm = T)`, 
-                       media_P5_DT=media_P5_DT$`weighted.mean(P5, PES, na.rm = T)`)
+                       media_P5_DT=media_P5_DT$`weighted.mean(P5, PES, na.rm = T)`,
+                       distrito=c("Ciutat Vella","l'Eixample","Extramurs","Campanar",
+                                  "la Saïdia","el Pla del Real","l'Olivereta","Patraix",
+                                  "Jesús","Quatre Carreres","Poblats Marítims",
+                                  "Camins al Grau","Algirós","Benimaclet",
+                                  "Rascanya","Benicalap","Pobles del Nord",
+                                  "Pobles de l'Oest","Pobles del Sud"))
 
 # Dibujamos el gráfico de puntos/burbujas
-p=ggplot(data=datos_plot, aes(porc_P6_DT,media_P5_DT)) +  
+
+p=ggplot(data=datos_plot, aes(porc_P6_DT,media_P5_DT,label=distrito)) +  
    geom_point(colour="#4781b3", size=2) +
    theme_bw() +
    labs(title=NULL, 
@@ -42,7 +49,8 @@ p=ggplot(data=datos_plot, aes(porc_P6_DT,media_P5_DT)) +
         x="Porcentaje de personas (distrito) que pagan 601 euros o más de hipoteca o alquiler", 
         caption="Fuente: Barómetro de Opinión Ciudadana de Marzo de 2020. Elaboración: Oficina d'Estadística. Ajuntament de València.")+
    theme(plot.caption = element_text(color = "black",face = "italic", size = 6, hjust=0),
-         axis.title = element_text(size=8.5))
+         axis.title = element_text(size=8.5))+
+   geom_text(nudge_y = 0.05,size=2)
 p
 ggsave(filename = paste0("20200514 Grafico puntos o burbujas.png"), p,
        width = 9, height = 5, dpi = 300, units = "in", device='png')
