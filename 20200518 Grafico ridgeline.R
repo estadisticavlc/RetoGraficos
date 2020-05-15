@@ -17,7 +17,7 @@ datos=datos[datos$ANO>=1938,]
 datos$VALOR=as.numeric(as.character(datos$VALOR))
 nombres_meses=c("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre",
         "Noviembre","Diciembre")
-datos$MES=meses[datos$MES]
+datos$MES=nombres_meses[datos$MES]
 datos$MES=factor(datos$MES,levels=rev(nombres_meses))
 
 # Dibujamos el gráfico ridgeline
