@@ -23,14 +23,17 @@ datos_plot$MES<-factor(datos_plot$MES, levels = 1:12, labels = c("Enero", "Febre
 options(scipen=999)
 p=ggplot(data = datos_plot,
          aes(x = MES, y = VALOR, fill = TRANSPORTE)) +
-   geom_bar(width = 1, stat = "identity", position = "stack", colour = "black") +
+   geom_bar(width = 1, stat = "identity", position = "stack", colour = "gray70") +
+   geom_text(aes(label=format(VALOR, big.mark = ".", scientific = FALSE)),size=1.5)+
    labs(title="Pasajeros en el Aeropuerto y en el Puerto de València. 2019",
         x=NULL,
         y=NULL,
         caption="Fuente: Aeropuertos Españoles y Navegación Aérea (AENA). Puerto Autónomo de València.\n\nElaboración: Oficina d'Estadística. Ajuntament de València.")+
    theme(plot.title = element_text(size=14,hjust = 0.5,face="bold"),
          plot.caption = element_text(color = "black",face = "italic", size = 6, hjust=0.5),
-         legend.position = "right")+
+         legend.position = "right",
+         axis.text.y = element_blank(),
+         axis.ticks = element_blank())+
    scale_y_sqrt() +
    scale_fill_brewer(type = "qual", palette = "Pastel2", breaks = c("EMT","Aeropuerto","Puerto"), name="Medio de transporte")+
    coord_polar(start = 3 * pi / 2)
