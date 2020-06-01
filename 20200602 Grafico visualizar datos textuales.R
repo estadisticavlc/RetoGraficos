@@ -27,7 +27,7 @@ text(x=0.5, y=0.5, "¿Qué es lo que más le gusta de su distrito?", cex = 2)
 wordcloud(words = datos.plot$palabras, freq = datos.plot$freq, min.freq = 1,
           max.words=200, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"),scale = c(1.8,0.8))
-text(x=0.5, y=0, "Fuente: Barómetro de Opinión Ciudadana de Diciembre de 2020. Elaboración: Oficina d'Estadística. Ajuntament de València.", cex = 0.5)
+text(x=0.5, y=0, "Fuente: Barómetro de Opinión Ciudadana de Diciembre de 2019. Elaboración: Oficina d'Estadística. Ajuntament de València.", cex = 0.5)
 
 dev.off()
 
