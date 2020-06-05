@@ -17,7 +17,6 @@ fechas<-as.Date(paste0(as.character(datos$ANO[datos$codigo=="Ind11"]),"-",as.cha
 datos_plot<-data.frame(fechas, valores)
 datos_plot<-datos_plot[which(datos_plot$fechas<"2020-1-1"),]
 datos_plot$anyo<-as.numeric(format(datos_plot$fecha, "%Y"))
-datos_plot$name<-factor(datos_plot$name,levels = c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"))
 
 # Dibujamos el gráfico animado
 options(scipen=999)
@@ -25,6 +24,8 @@ p <- ggplot(datos_plot, aes(x = fechas, y=valores)) +
         geom_line(show.legend = FALSE, alpha = 0.8, colour="steelblue", size=1) +
         geom_point()  +
         scale_x_date(date_labels = "%m/%Y") +
+        scale_y_continuous(labels = function(x) format(x, big.mark = ".",
+                                                       scientific = FALSE)) +
         labs(title="Pernoctaciones en establecimientos hoteleros. 1999-2019",
              x="",
              y="",
